@@ -1,0 +1,32 @@
+
+application {
+  config {
+    baseName myjhapp
+    applicationType monolith
+    packageName my.jhipster.app
+    authenticationType oauth2
+    prodDatabaseType mongodb
+    clientFramework react
+  }
+  entities *
+}
+
+entity UserGroup {
+	id Long required unique,
+    name String required
+}
+
+entity AppUser {
+	id Long required unique,
+    externalUserId String required unique,
+    username String required unique,
+    firstName String required,
+    lastName String required,
+	email String required unique,
+    registeredDate ZonedDateTime,
+    lastLoginDate ZonedDateTime
+}
+
+relationship OneToMany {
+    AppUser to UserGroup
+}
